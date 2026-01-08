@@ -10,9 +10,9 @@ export default function Footer() {
           <p>Developer: Olya Poliukhovych</p>
           <p>
             Contact me:
-            <Link href="mailto:mailto:olha.poliukhovych.1@gmail.com">
-              olha.poliukhovych.1@gmail.com
-            </Link>
+            <span className={css.emailSpan}>
+              <Link href="mailto:olha.poliukhovych.1@gmail.com">olha.poliukhovych.1@gmail.com</Link>
+            </span>
           </p>
         </div>
       </div>

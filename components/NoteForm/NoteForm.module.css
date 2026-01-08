@@ -40,7 +40,9 @@
   transition: background-color 250ms ease;
 }
 
-.submitButton:hover {
+.submitButton:hover,
+.submitButton:focus,
+.submitButton:active {
   background-color: #2a003a;
 }
 
@@ -60,7 +62,9 @@
   transition: background-color 250ms ease;
 }
 
-.cancelButton:hover {
+.cancelButton:hover,
+.cancelButton:focus,
+.cancelButton:active {
   background-color: #e2e6ea;
 }
 

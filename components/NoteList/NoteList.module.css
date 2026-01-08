@@ -17,9 +17,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 180px;
-  transition:
-    transform 250ms ease,
-    box-shadow 250ms ease;
+  transition: transform 250ms ease, box-shadow 250ms ease;
 }
 
 .listItem:hover {
@@ -55,12 +53,12 @@
   border: 2px solid #dc3545;
   border-radius: 4px;
   cursor: pointer;
-  transition:
-    background-color 250ms ease,
-    color 250ms ease;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
-.button:hover {
+.button:hover,
+.button:focus,
+.button:active {
   color: #ffffff;
   background-color: #dc3545;
 }
@@ -84,4 +82,18 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.noteDetailsLink {
+  text-decoration: none;
+  color: #550c72;
+  transition: text-decoration 250s ease, color 250s ease;
+}
+
+.noteDetailsLink:hover,
+.noteDetailsLink:focus,
+.noteDetailsLink:active {
+  text-decoration: underline;
+  color: #2a003a;
+  font-weight: 450;
 }

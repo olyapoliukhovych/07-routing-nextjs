@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Note, FetchNotesResponse } from '../types/note';
+import type { Note, FetchNotesResponse } from '@/types/note';
 
 const noteApi = axios.create({
   baseURL: 'https://notehub-public.goit.study/api',
@@ -13,22 +13,22 @@ noteApi.interceptors.request.use(config => {
   return config;
 });
 
-// export interface FetchNotesResponse {
-//   notes: Note[];
-//   totalPages: number;
-// }
-
 export const fetchNotes = async (
-  search: string = '',
-  page: number = 1
+  page: number = 1,
+  search: string = ''
 ): Promise<FetchNotesResponse> => {
   const params = {
-    search,
-    page,
+    page: page || 1,
+    search: search || '',
     perPage: 12,
   };
-  const { data } = await noteApi.get<FetchNotesResponse>('/notes', { params });
-  return data;
+  try {
+    const { data } = await noteApi.get<FetchNotesResponse>('/notes', { params });
+    return data;
+  } catch (error) {
+    console.error('API Error Params:', params);
+    throw error;
+  }
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {

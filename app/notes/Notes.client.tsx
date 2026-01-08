@@ -40,7 +40,11 @@ export default function NotesClient() {
         </button>
       </header>
 
-      {data?.notes.length ? <NoteList notes={data.notes} /> : !isLoading && <p>No notes found.</p>}
+      {data?.notes.length ? (
+        <NoteList notes={data.notes} />
+      ) : (
+        !isLoading && <p className="noNotesMsg">No notes found.</p>
+      )}
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>

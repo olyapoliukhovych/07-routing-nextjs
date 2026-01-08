@@ -14,11 +14,15 @@
 }
 
 .footer a {
-  color: #226ec5;
+  color: #550c72;
   font-weight: 600;
   text-decoration: none;
 }
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+.emailSpan {
+  padding: 0px 4px;
 }
