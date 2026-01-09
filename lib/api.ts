@@ -20,20 +20,30 @@ export interface FetchNotesResponse {
 
 export const fetchNotes = async (
   page: number = 1,
-  search: string = ''
+  search: string = '',
+  tag?: string
 ): Promise<FetchNotesResponse> => {
   const params = {
     page: page || 1,
     search: search || '',
     perPage: 12,
+    ...(tag && { tag }),
   };
-  try {
-    const { data } = await noteApi.get<FetchNotesResponse>('/notes', { params });
-    return data;
-  } catch (error) {
-    console.error('API Error Params:', params);
-    throw error;
-  }
+
+  // if (tag && tag !== 'all') {
+  //   params.tag = tag;
+  // }
+
+  // try {
+  //   const { data } = await noteApi.get<FetchNotesResponse>('/notes', { params });
+  //   return data;
+  // } catch (error) {
+  //   console.log('API Error Params:', params);
+  //   throw error;
+  // }
+
+  const { data } = await noteApi.get<FetchNotesResponse>('/notes', { params });
+  return data;
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
@@ -51,4 +61,17 @@ export const createNote = async (
 export const deleteNote = async (id: string): Promise<Note> => {
   const { data } = await noteApi.delete<Note>(`/notes/${id}`);
   return data;
+};
+
+export type Tag = {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export const getTags = async () => {
+  const response = await axios<Tag[]>('/tags');
+  return response.data;
 };

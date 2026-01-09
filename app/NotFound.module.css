@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+  text-align: center;
+  color: #2a003a;
+}
+
+.title {
+  margin: 0px;
+}
+
+.link {
+  text-decoration: none;
+  color: #550c72;
+}
+
+.link:hover,
+.link:focus,
+.link:active {
+  text-decoration: underline;
+  color: #2a003a;
+  font-weight: 450;
+}

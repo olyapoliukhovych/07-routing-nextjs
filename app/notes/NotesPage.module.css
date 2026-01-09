@@ -32,3 +32,9 @@
 .button:active {
   background-color: #2a003a;
 }
+
+.noNotesMsg {
+  padding: 20px;
+  text-align: center;
+  color: #2a003a;
+}
