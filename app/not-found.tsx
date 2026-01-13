@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import css from '@/app/NotFound.module.css';
+import css from './NotFound.module.css';
 
 const NotFound = () => {
   const router = useRouter();

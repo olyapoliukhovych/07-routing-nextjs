@@ -35,7 +35,13 @@ export default function NoteList({ notes }: NoteListProps) {
           <p className={css.content}>{content}</p>
           <div className={css.footer}>
             <span className={css.tag}>{tag}</span>
-            <button onClick={() => mutate(id)} className={css.button}>
+            <button
+              onClick={e => {
+                e.stopPropagation();
+                mutate(id);
+              }}
+              className={css.button}
+            >
               Delete
             </button>
           </div>
