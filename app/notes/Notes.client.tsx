@@ -12,15 +12,16 @@ import css from '@/app/notes/NotesPage.module.css';
 import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 
-export default function NotesClient() {
+export default function NotesClient({ serverTag }: { serverTag?: string }) {
   const params = useParams();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [debouncedSearch] = useDebounce(search, 500);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
-  const rawTag = Array.isArray(params.tag) ? params.tag[0] : params.tag;
-  const activeTag = rawTag === 'all' ? undefined : rawTag;
+  const slug = params.slug;
+  const activeTag =
+    serverTag ?? (Array.isArray(slug) ? slug[0] : slug === 'all' ? undefined : slug);
 
   const { data, isLoading } = useQuery({
     queryKey: ['notes', page, debouncedSearch, activeTag],

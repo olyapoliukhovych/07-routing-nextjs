@@ -9,7 +9,6 @@ export default async function NoteInterceptPage({ params }: { params: Promise<{ 
   return (
     <NotePreviewClient>
       <div className={css.container}>
-        {/* <button className={css.backBtn}>back</button> */}
         <div className={css.item}>
           <div className={css.header}>
             <h2>{note.title}</h2>
