@@ -45,6 +45,7 @@
   scrollbar-color: rgb(85, 12, 114) transparent;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  scroll-padding-left: 2px;
 }
 
 .button {
