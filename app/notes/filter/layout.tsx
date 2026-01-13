@@ -1,12 +1,14 @@
 import css from '@/app/notes/filter/LayoutNotes.module.css';
 
-type Props = {
+const NotesLayout = ({
+  children,
+  modal,
+  sidebar,
+}: {
   children: React.ReactNode;
-  modal: React.ReactNode;
-  sidebar: React.ReactNode;
-};
-
-const NotesLayout = ({ children, modal, sidebar }: Props) => {
+  modal?: React.ReactNode;
+  sidebar?: React.ReactNode;
+}) => {
   return (
     <div className={css.container}>
       <aside className={css.sidebar}>{sidebar}</aside>
