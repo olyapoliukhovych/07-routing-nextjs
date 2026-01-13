@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
-  padding: 0;
+  padding: 16px;
   margin: 0;
   list-style: none;
 }
@@ -41,7 +41,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow: auto;
+  scrollbar-color: rgb(85, 12, 114) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
 .button {
@@ -84,7 +87,7 @@
   text-overflow: ellipsis;
 }
 
-.noteDetailsLink {
+/* .noteDetailsLink {
   text-decoration: none;
   color: #550c72;
   transition: text-decoration 250s ease, color 250s ease;
@@ -96,4 +99,4 @@
   text-decoration: underline;
   color: #2a003a;
   font-weight: 450;
-}
+} */

@@ -65,19 +65,19 @@ import { fetchNotes } from '@/lib/api';
 import NoteList from '@/components/NoteList/NoteList';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
+import css from '@/app/notes/NotesPage.module.css';
 import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
-import css from '@/app/notes/NotesPage.module.css';
 
 export default function NotesClient() {
   const params = useParams();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [debouncedSearch] = useDebounce(search, 500);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
-  const tagArray = params.tag as string[] | undefined;
-  const activeTag = tagArray?.[0] === 'all' ? undefined : tagArray?.[0];
+  const rawTag = Array.isArray(params.tag) ? params.tag[0] : params.tag;
+  const activeTag = rawTag === 'all' ? undefined : rawTag;
 
   const { data, isLoading } = useQuery({
     queryKey: ['notes', page, debouncedSearch, activeTag],
@@ -98,7 +98,7 @@ export default function NotesClient() {
         {data && data.totalPages > 1 && (
           <Pagination pageCount={data.totalPages} currentPage={page} onPageChange={setPage} />
         )}
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+        <button className={css.button} onClick={() => setIsCreateOpen(true)}>
           Create note +
         </button>
       </header>
@@ -111,9 +111,9 @@ export default function NotesClient() {
         <p className={css.noNotesMsg}>No notes found.</p>
       )}
 
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <NoteForm onClose={() => setIsModalOpen(false)} />
+      {isCreateOpen && (
+        <Modal onClose={() => setIsCreateOpen(false)} showBackButton={false}>
+          <NoteForm onClose={() => setIsCreateOpen(false)} />
         </Modal>
       )}
     </div>

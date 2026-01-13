@@ -1,37 +1,43 @@
-import { createPortal } from 'react-dom';
-import css from '@/components/Modal/Modal.module.css';
-import { useEffect, type ReactNode } from 'react';
+'use client';
 
-interface ModalProps {
-  children: ReactNode;
+import Image from 'next/image';
+import css from './Modal.module.css';
+import { useEffect } from 'react';
+
+type Props = {
+  children: React.ReactNode;
   onClose: () => void;
-}
+  showBackButton?: boolean;
+};
 
-export default function Modal({ children, onClose }: ModalProps) {
-  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-  };
-
+const Modal = ({ children, onClose, showBackButton = false }: Props) => {
   useEffect(() => {
-    const handleKeydown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-
-    document.addEventListener('keydown', handleKeydown);
+    const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = 'hidden';
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
-      document.removeEventListener('keydown', handleKeydown);
-      document.body.style.overflow = '';
+      document.body.style.overflow = originalStyle;
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 
-  return createPortal(
-    <div onClick={handleBackdropClick} className={css.backdrop} role="dialog" aria-modal="true">
-      <div className={css.modal}>{children}</div>
-    </div>,
-    document.getElementById('modal-root')! as HTMLElement
+  return (
+    <div className={css.backdrop} onClick={onClose}>
+      <div className={css.modal} onClick={e => e.stopPropagation()}>
+        {children}
+        {showBackButton && (
+          <button className={css.goBackBtn} onClick={onClose}>
+            <Image src="/circle-left.svg" alt="close" width={20} height={20} />
+          </button>
+        )}
+      </div>
+    </div>
   );
-}
+};
+
+export default Modal;

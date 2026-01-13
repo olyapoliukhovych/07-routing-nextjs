@@ -7,10 +7,8 @@ type Props = {
 };
 
 export default async function FilteredNotesPage({ params }: Props) {
-  const resolvedParams = await params;
-
-  const tagFromUrl = resolvedParams.tag?.[0];
-  const activeTag = tagFromUrl === 'all' ? undefined : tagFromUrl;
+  const { tag } = await params;
+  const activeTag = tag?.[0] === 'all' ? undefined : tag?.[0];
 
   const queryClient = new QueryClient();
 

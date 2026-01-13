@@ -7,7 +7,6 @@
 }
 
 .toolbar {
-  margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,6 +33,12 @@
 }
 
 .noNotesMsg {
+  padding: 20px;
+  text-align: center;
+  color: #2a003a;
+}
+
+.loading {
   padding: 20px;
   text-align: center;
   color: #2a003a;

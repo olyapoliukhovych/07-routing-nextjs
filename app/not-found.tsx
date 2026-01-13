@@ -9,7 +9,7 @@ const NotFound = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const timer = setTimeout(() => router.push('/'), 5000);
+    const timer = setTimeout(() => router.push('/'), 10000);
     return () => clearTimeout(timer);
   }, [router]);
 
@@ -17,6 +17,7 @@ const NotFound = () => {
     <div className={css.container}>
       <h1 className={css.title}>404 - Page Not Found</h1>
       <p className={css.description}>Sorry, the page you are looking for does not exist.</p>
+      <p className={css.description}>You will be redirected to the home page in 10 seconds.</p>
       <Link href="/" className={css.link}>
         Go back home
       </Link>
