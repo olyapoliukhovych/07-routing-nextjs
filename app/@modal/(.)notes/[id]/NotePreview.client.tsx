@@ -12,6 +12,7 @@ function NotePreviewClient({ id }: { id: string }) {
   const { data: note } = useQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
   });
 
   if (!note) return null;
