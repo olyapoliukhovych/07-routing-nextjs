@@ -31,3 +31,9 @@ select {
   text-align: center;
   color: #dc3545;
 }
+
+html {
+  scrollbar-color: rgb(85, 12, 114) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
